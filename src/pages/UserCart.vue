@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import CartItem from '../components/cart/CartItem.vue';
+// import CartItem from '../components/cart/CartItem.vue';
 
 export default {
   inject: ['cart'],
-  components: {
-    CartItem,
-  },
+  // components: {
+  //   CartItem,
+  // },
   computed: {
     cartTotal() {
       return this.cart.total.toFixed(2);
