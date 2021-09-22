@@ -1,5 +1,6 @@
 import actions from './actions';
 import mutations from './mutations';
+import getters from './getters';
 
 export default {
 	namespaced: true,
@@ -8,11 +9,7 @@ export default {
 			cart: { items: [], total: 0, qty: 0 },
 		}
 	},
-	getters: {
-		getCart(state) {
-			return state.cart;
-		}
-	},
+	getters: getters,
 	actions: actions,
 	mutations: mutations,
 }

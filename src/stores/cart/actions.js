@@ -1,14 +1,15 @@
 export default {
-	addProductToCart({context, getters}, productData) {
-		const cart = getters.getCart;
+	addProductToCart(context, productData) {
+		const cart = context.getters.getCart;
 
 		const productInCartIndex = cart.items.findIndex(
 			(ci) => ci.productId === productData.id
 		);
 
 		if (productInCartIndex >= 0) {
-			// @todo 22.09.2021-dudnik.es mutate
-			cart.items[productInCartIndex].qty++;
+			context.commit('addExistedProduct', {
+				index: productInCartIndex,
+			});
 		} else {
 			const newItem = {
 				productId: productData.id,
@@ -18,12 +19,16 @@ export default {
 				qty: 1,
 			};
 
-			// @todo 22.09.2021-dudnik.es mutate
-			cart.items.push(newItem);
+			context.commit('addNewProduct', newItem);
 		}
 
-		// @todo 22.09.2021-dudnik.es mutate
-		this.cart.qty++;
-		this.cart.total += productData.price;
+		context.commit('increaseCartCounter');
+		context.commit('increaseCartSum', {
+			price: productData.price,
+		});
 	},
+
+	removeProductFromCart() {
+
+	}
 }
