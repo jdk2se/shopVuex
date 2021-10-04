@@ -22,17 +22,19 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+
 export default {
-  inject: ['removeProductFromCart'],
   props: ['prodId', 'title', 'image', 'price', 'qty'],
   computed: {
     itemTotal() {
       return (this.price * this.qty).toFixed(2);
-    }
+    },
   },
   methods: {
+    ...mapActions('cart', ['removeCartProduct']),
     remove() {
-      this.removeProductFromCart(this.prodId);
+      this.removeCartProduct(this.prodId);
     }
   }
 };

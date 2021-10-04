@@ -28,7 +28,7 @@ export default {
 		});
 	},
 
-	removeProductFromCart() {
-
-	}
+	removeCartProduct(context, index) {
+		context.commit('removeCartProduct', {index: index});
+	},
 }
